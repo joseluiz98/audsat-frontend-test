@@ -3,6 +3,28 @@
     color: $value !important;
   }
 
+  .all-color-#{$color} {
+    * {
+      color: $value !important;
+    }
+  }
+
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+}
+
+@each $color, $value in $grays {
+  .color-#{$color} {
+    color: $value !important;
+  }
+
+  .all-color-#{$color} {
+    * {
+      color: $value !important;
+    }
+  }
+
   .bg-#{$color} {
     background-color: $value !important;
   }

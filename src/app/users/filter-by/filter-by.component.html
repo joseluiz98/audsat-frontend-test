@@ -1,0 +1,38 @@
+<h2>Filtrar por</h2>
+
+<form [formGroup]="this.filterForm" (submit)="filter()">
+  <section class="row">
+    <mat-form-field class="col">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput placeholder="Ex. Alice" />
+    </mat-form-field>
+
+    <mat-form-field class="col">
+      <mat-label>Username</mat-label>
+      <input
+        formControlName="username"
+        matInput
+        placeholder="Ex. alice.smith"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="col">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-icon-button
+      color="primary"
+      aria-label="Search button with an icon"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </section>
+</form>

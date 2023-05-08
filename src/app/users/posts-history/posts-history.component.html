@@ -1,0 +1,15 @@
+<div class="row">
+  <!-- Left column (user info) -->
+  <div class="col-4">
+    <app-user-data [user]="user"></app-user-data>
+  </div>
+
+  <!-- Right column (posts info) -->
+  <div class="col-8">
+    <mat-accordion [multi]="false" class="accordion" multi>
+      <ng-container *ngFor="let post of posts">
+        <app-post [post]="post"></app-post>
+      </ng-container>
+    </mat-accordion>
+  </div>
+</div>

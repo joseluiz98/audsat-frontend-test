@@ -1,0 +1,22 @@
+<div class="card bg-gray-7" style="width: 18rem">
+  <div class="card-body">
+    <h2 class="card-title">Dados do Usuário</h2>
+    <ul class="list-group list-group-flush">
+      <li class="bg-gray-7 list-group-item">
+        <h4>Nome:</h4>
+        <i>{{ user.name }}</i>
+      </li>
+      <li class="bg-gray-7 list-group-item">
+        <h4>E-mail:</h4>
+        <i>{{ user.email }}</i>
+      </li>
+      <li class="bg-gray-7 list-group-item">
+        <h4>Endereço:</h4>
+        <p>
+          Rua: {{ user.address.street }} {{ user.address.suite }} Cidade:
+          {{ user.address.city }} {{ user.address.zipcode }}
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
