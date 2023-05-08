@@ -5,9 +5,7 @@ import { MatAccordion } from '@angular/material/expansion';
 
 import { Post } from '../../shared/classes/post';
 import { User } from '../../shared/classes/user';
-
-import { JsonplaceholderService } from '../../shared/jsonplaceholder.service';
-import { delay } from 'rxjs';
+import { JsonplaceholderService } from '../../shared/services/jsonplaceholder.service';
 
 @Component({
   selector: 'app-posts-history',

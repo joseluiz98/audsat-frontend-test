@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { User } from '../../shared/classes/user';
-import { IFilter } from '../../shared/filter';
-import { JsonplaceholderService } from '../../shared/jsonplaceholder.service';
+import { IFilter } from '../../shared/classes/filter';
+import { JsonplaceholderService } from '../../shared/services/jsonplaceholder.service';
 
 @Component({
   selector: 'app-users',

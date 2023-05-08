@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { delay } from 'rxjs';
 
 import { Post } from '../../../shared/classes/post';
-import { JsonplaceholderService } from '../../../shared/jsonplaceholder.service';
+import { JsonplaceholderService } from '../../../shared/services/jsonplaceholder.service';
 
 @Component({
   selector: 'app-post',
