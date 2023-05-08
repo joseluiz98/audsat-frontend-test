@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 import { Log } from '../shared/classes/log';
 import { LogBody } from '../shared/classes/log-body';
@@ -11,11 +13,14 @@ import { LoggerService } from '../shared/services/logger.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnDestroy, OnInit {
+  // Subscription
+  private subs$: Subscription[] = [];
+
   constructor(private logger: LoggerService, private router: Router) {}
   public ngOnInit(): void {
     // Managing logs
-    this.router.events.subscribe((event) => {
+    let routeEvents$ = this.router.events.subscribe((event) => {
       let targetRoute = '';
 
       if (event instanceof NavigationEnd) {
@@ -27,5 +32,10 @@ export class HeaderComponent implements OnInit {
         this.logger.log(log);
       }
     });
+    this.subs$.push(routeEvents$);
+  }
+
+  public ngOnDestroy(): void {
+    this.subs$.forEach((sub) => sub.unsubscribe());
   }
 }

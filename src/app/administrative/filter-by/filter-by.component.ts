@@ -1,7 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { debounce, debounceTime } from 'rxjs';
+import { debounce, debounceTime, Subscription } from 'rxjs';
 
 import { Log } from '../../shared/classes/log';
 import { LogType } from '../../shared/enums/log-type';
@@ -12,9 +18,12 @@ import { LoggerService } from '../../shared/services/logger.service';
   templateUrl: './filter-by.component.html',
   styleUrls: ['./filter-by.component.scss'],
 })
-export class FilterByComponent implements OnInit {
+export class FilterByComponent implements OnDestroy, OnInit {
   constructor(private logger: LoggerService) {}
   @Output() public filterBy = new EventEmitter();
+
+  // Subscription
+  private subs$: Subscription[] = [];
 
   public filterForm: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -24,9 +33,13 @@ export class FilterByComponent implements OnInit {
 
   public ngOnInit(): void {
     // Performs filtering automatically respecting a delay (debounce time) after each value change
-    this.filterForm.valueChanges.pipe(debounceTime(800)).subscribe((value) => {
-      this.filter();
-    });
+    let formValue$ = this.filterForm.valueChanges
+      .pipe(debounceTime(800))
+      .subscribe((value) => {
+        this.filter();
+      });
+
+    this.subs$.push(formValue$);
   }
 
   get email() {
@@ -37,5 +50,9 @@ export class FilterByComponent implements OnInit {
     let event = new Log(LogType.FILTER, this.filterForm.value);
     this.logger.log(event);
     this.filterBy.emit(this.filterForm.value);
+  }
+
+  public ngOnDestroy(): void {
+    this.subs$.forEach((sub) => sub.unsubscribe());
   }
 }
