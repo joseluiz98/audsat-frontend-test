@@ -18,7 +18,7 @@ Foi desenvovlidor nesta aplicação:
 - A busca no componente de Filtros (na listagem de usuários) é combinada, ou seja, podem ser utilizados mais de um campo e os resultados respeitarão os valorse de todos os campos utilizados. Além disso, o filtro é **instant search**, ou seja, não é necessário o clique no botão de pesquisa, a própria aplicação pesquisará assim que você terminar os inputs, porém o botão de pesquisa é funcional.
 - A busca por usuários foi implementada utilizando queryParams, ou seja, a aplicação efetua chamadas à API com os parãmetros digitados para buscar a resposta correspondente, porém, implementei também um pipe que faz essa busca pelos usuários que já estão em tela, para ativar, dÊ um ctrl+f por **_FILTER_WITH_PIPE_**, e troque o valor dessa variável para `true`
 
-![Vriable that toggles filtering by pipe/query params](https://ibb.co/0tHQd9q)
+![Vriable that toggles filtering by pipe/query params](https://i.ibb.co/sH8tM1j/image-20230508154210388.png)
 
 - O componente de logs foi implemetado! Utilizei IndexedDB para isso
   - A integração com o IndexedDB foi feita com o auxílio da **[ngx-indexed-db](https://www.npmjs.com/package/ngx-indexed-db)**
