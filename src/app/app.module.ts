@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { HomeModule } from './home/home.module';
-import { AdministrativeModule } from './administrative/administrative.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -15,8 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule,
-    AdministrativeModule,
     HttpClientModule,
   ],
   providers: [],
