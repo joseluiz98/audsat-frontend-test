@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map, Observable, tap } from 'rxjs';
 import { Post } from '../classes/post';
@@ -9,6 +9,7 @@ import { LoggerService } from './logger.service';
 import { Log } from '../classes/log';
 import { LogBody } from '../classes/log-body';
 import { LogType } from '../enums/log-type';
+import { IFilter } from '../classes/filter';
 
 const API = 'https://jsonplaceholder.typicode.com';
 
@@ -18,13 +19,34 @@ const API = 'https://jsonplaceholder.typicode.com';
 export class JsonplaceholderService {
   constructor(private http: HttpClient, private logger: LoggerService) {}
 
-  public getUsers(): Observable<User[]> {
-    return this.http.get(`${API}/users`).pipe(
-      tap(() =>
-        this.logger.log(
-          new Log(LogType.HTTP_REQUEST, new LogBody('Get All Users'))
-        )
-      ),
+  public getUsers(optionalFilter?: IFilter | null): Observable<User[]> {
+    let params = new HttpParams();
+
+    if (optionalFilter?.name) {
+      params = params.set('name', optionalFilter.name);
+    }
+    if (optionalFilter?.username) {
+      params = params.set('username', optionalFilter.username);
+    }
+    if (optionalFilter?.email) {
+      params = params.set('email', optionalFilter.email);
+    }
+
+    return this.http.get(`${API}/users`, { params }).pipe(
+      tap(() => {
+        if (!optionalFilter) {
+          this.logger.log(
+            new Log(LogType.HTTP_REQUEST, new LogBody('Get All Users'))
+          );
+        } else {
+          this.logger.log(
+            new Log(
+              LogType.HTTP_REQUEST,
+              new LogBody('Get filtered users list')
+            )
+          );
+        }
+      }),
       map((value) => value as User[])
     );
   }

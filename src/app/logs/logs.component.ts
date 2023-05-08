@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { LoggerService } from '../shared/services/logger.service';
@@ -16,16 +15,12 @@ export class LogsComponent implements AfterViewInit {
   public displayedColumns: string[] = ['id', 'timestamp', 'type', 'body'];
   public dataSource = new MatTableDataSource<Log>([]);
 
-  constructor(
-    private logger: LoggerService,
-    private _liveAnnouncer: LiveAnnouncer
-  ) {}
+  constructor(private logger: LoggerService) {}
 
   @ViewChild(MatSort) sort: MatSort | null = null;
 
   public ngAfterViewInit() {
     this.fillLogs();
-
     this.dataSource.sort = this.sort;
   }
 
@@ -33,19 +28,6 @@ export class LogsComponent implements AfterViewInit {
     this.logger.getLogs().subscribe((logs) => {
       this.dataSource.data = logs;
     });
-  }
-
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: any) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
   }
 
   public refreshLogs(): void {
