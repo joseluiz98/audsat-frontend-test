@@ -3,6 +3,7 @@ $blue: #2c46e6 !default;
 $indigo: #1d2b87 !default;
 $cyan-grey: #1b2533 !default;
 $green: #30d3ae !default;
+$dartmouth-green: #007839 !default;
 
 // secondary colors
 $deep-cyan: #196f9a !default; // Matisse
@@ -66,6 +67,7 @@ $colors: map-merge(
     "yellow": $yellow,
     "white": $white,
     "rich-black": #003040,
+    "dartmouth-green": #007839,
   ),
   $colors
 );
