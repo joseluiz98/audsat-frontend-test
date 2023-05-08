@@ -1,4 +1,6 @@
 export enum LogType {
   NAVIGATION = 'NAVIGATION',
   POST_DELETE = 'POST_DELETE',
+  HTTP_REQUEST = 'HTTP_REQUEST',
+  FILTER = 'FILTER',
 }

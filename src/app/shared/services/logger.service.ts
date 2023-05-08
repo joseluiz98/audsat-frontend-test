@@ -18,6 +18,6 @@ export class LoggerService {
   }
 
   public log(event: Log) {
-    this.dbService.add('event', event).subscribe();
+    this.dbService.add('event', event).subscribe((res) => console.log(res));
   }
 }

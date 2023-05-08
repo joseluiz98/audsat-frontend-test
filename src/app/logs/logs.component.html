@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <h1>Registro de Logs</h1>
+  <div class="d-flex justify-content-between">
+    <h1>Registro de Logs</h1>
+    <button (abort)="refreshLogs()" mat-button>>Refresh</button>
+  </div>
   <hr />
 
   <table
@@ -47,7 +50,43 @@
       >
         Event Type
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.type | titlecase }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.type | formatLog | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="body">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by Type"
+      >
+        Body
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container [ngSwitch]="element.type">
+          <ng-container *ngSwitchCase="'HTTP_REQUEST'">
+            {{ element.body.value }}
+          </ng-container>
+          <ng-container *ngSwitchCase="'FILTER'">
+            Filtered user list by
+            <ng-container *ngIf="element.body.name">
+              name: {{ element.body.name }}
+            </ng-container>
+            <ng-container *ngIf="element.body.username">
+              username: {{ element.body.username }}
+            </ng-container>
+            <ng-container *ngIf="element.body.email">
+              email: {{ element.body.email }}
+            </ng-container>
+          </ng-container>
+          <ng-container *ngSwitchDefault="">
+            Route redirect: '<i>{{ element.body.targetRoute }}</i
+            >'
+          </ng-container>
+        </ng-container>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

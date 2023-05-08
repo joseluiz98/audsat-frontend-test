@@ -13,7 +13,7 @@ import { Log } from '../shared/classes/log';
   styleUrls: ['./logs.component.scss'],
 })
 export class LogsComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['id', 'timestamp', 'type'];
+  public displayedColumns: string[] = ['id', 'timestamp', 'type', 'body'];
   public dataSource = new MatTableDataSource<Log>([]);
 
   constructor(
@@ -24,11 +24,15 @@ export class LogsComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | null = null;
 
   public ngAfterViewInit() {
+    this.fillLogs();
+
+    this.dataSource.sort = this.sort;
+  }
+
+  private fillLogs(): void {
     this.logger.getLogs().subscribe((logs) => {
       this.dataSource.data = logs;
     });
-
-    this.dataSource.sort = this.sort;
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -42,5 +46,9 @@ export class LogsComponent implements AfterViewInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  public refreshLogs(): void {
+    this.fillLogs();
   }
 }

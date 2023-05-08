@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Log } from '../../shared/classes/log';
+import { LogType } from '../../shared/enums/log-type';
+import { LoggerService } from '../../shared/services/logger.service';
 
 @Component({
   selector: 'app-filter-by',
@@ -7,6 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./filter-by.component.scss'],
 })
 export class FilterByComponent {
+  constructor(private logger: LoggerService) {}
   @Output() public filterBy = new EventEmitter();
 
   public filterForm: FormGroup = new FormGroup({
@@ -20,6 +24,8 @@ export class FilterByComponent {
   }
 
   public filter(): void {
+    let event = new Log(LogType.FILTER, this.filterForm.value);
+    this.logger.log(event);
     this.filterBy.emit(this.filterForm.value);
   }
 }
