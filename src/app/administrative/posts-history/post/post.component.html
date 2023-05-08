@@ -10,8 +10,10 @@
       </p>
       <div class="mx-1 vr"></div>
       <button
+        id="delete-{{ post.id }}"
         (click)="deletePost($event)"
         mat-icon-button
+        class="ms-2"
         aria-label="Delete comment button"
       >
         <mat-icon>delete</mat-icon>
