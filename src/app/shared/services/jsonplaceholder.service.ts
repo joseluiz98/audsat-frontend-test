@@ -34,7 +34,12 @@ export class JsonplaceholderService {
 
     return this.http.get(`${API}/users`, { params }).pipe(
       tap(() => {
-        if (!optionalFilter) {
+        if (
+          !optionalFilter ||
+          (optionalFilter.name === '' &&
+            optionalFilter.username === '' &&
+            optionalFilter.email === '')
+        ) {
           this.logger.log(
             new Log(LogType.HTTP_REQUEST, new LogBody('Get All Users'))
           );

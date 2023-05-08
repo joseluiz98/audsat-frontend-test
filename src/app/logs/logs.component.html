@@ -71,16 +71,28 @@
             {{ element.body.value }}
           </ng-container>
           <ng-container *ngSwitchCase="'FILTER'">
-            Filtered user list by
-            <ng-container *ngIf="element.body.name">
-              name: {{ element.body.name }}
+            <ng-container
+              *ngIf="
+                !element.body.name &&
+                  !element.body.username &&
+                  !element.body.email;
+                else filterFilled
+              "
+            >
+              User's filter cleared
             </ng-container>
-            <ng-container *ngIf="element.body.username">
-              username: {{ element.body.username }}
-            </ng-container>
-            <ng-container *ngIf="element.body.email">
-              email: {{ element.body.email }}
-            </ng-container>
+            <ng-template #filterFilled>
+              Filtered user list by
+              <ng-container *ngIf="element.body.name">
+                name: {{ element.body.name }}
+              </ng-container>
+              <ng-container *ngIf="element.body.username">
+                username: {{ element.body.username }}
+              </ng-container>
+              <ng-container *ngIf="element.body.email">
+                email: {{ element.body.email }}
+              </ng-container>
+            </ng-template>
           </ng-container>
           <ng-container *ngSwitchDefault="">
             Route redirect: '<i>{{ element.body.targetRoute }}</i
