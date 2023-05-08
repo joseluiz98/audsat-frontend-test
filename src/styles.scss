@@ -12,6 +12,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
   button {
+    border-radius: 8px !important;
     background-color: $dartmouth-green !important;
 
     &:hover {

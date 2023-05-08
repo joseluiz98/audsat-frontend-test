@@ -1,13 +1,13 @@
 <h2>Filtrar por</h2>
 
 <form id="users-filter-by" [formGroup]="this.filterForm" (submit)="filter()">
-  <section class="row">
-    <mat-form-field class="col">
+  <section class="row d-flex align-items-center">
+    <mat-form-field subscriptSizing="dynamic" class="col">
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput placeholder="Ex. Alice" />
     </mat-form-field>
 
-    <mat-form-field class="col">
+    <mat-form-field subscriptSizing="dynamic" class="col">
       <mat-label>Username</mat-label>
       <input
         formControlName="username"
@@ -16,7 +16,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="col">
+    <mat-form-field subscriptSizing="dynamic" class="col">
       <mat-label>Email</mat-label>
       <input
         type="email"
