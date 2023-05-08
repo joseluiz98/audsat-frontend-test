@@ -36,4 +36,8 @@ export class JsonplaceholderService {
       .get(`${API}/posts/${postId}/comments`)
       .pipe(map((value) => value as Comment[]));
   }
+
+  public deletePost(id: string) {
+    return this.http.delete(`${API}/posts/${id}`);
+  }
 }

@@ -35,4 +35,17 @@ export class PostsHistoryComponent implements OnInit {
       this.posts = posts;
     });
   }
+
+  public deletePost(postId: number): void {
+    event?.stopPropagation();
+    let postIdx = this.posts.findIndex((x) => x.id === postId);
+    let post = this.posts.find((x) => x.id === postId);
+
+    if (!!post) post.loading = true;
+
+    this.service.deletePost(postId.toString()).subscribe(() => {
+      this.posts.splice(postIdx, 1);
+      if (!!post) post.loading = false;
+    });
+  }
 }

@@ -8,7 +8,12 @@
   <div class="col-8">
     <mat-accordion [multi]="false" class="accordion" multi>
       <ng-container *ngFor="let post of posts">
-        <app-post [post]="post"></app-post>
+        <app-post [post]="post" (removePost)="deletePost($event)"></app-post>
+        <mat-progress-bar
+          class="mb-2"
+          *ngIf="!!post.loading"
+          mode="indeterminate"
+        ></mat-progress-bar>
       </ng-container>
     </mat-accordion>
   </div>

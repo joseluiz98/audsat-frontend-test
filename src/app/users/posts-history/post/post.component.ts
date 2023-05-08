@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { delay } from 'rxjs';
 
@@ -13,6 +13,8 @@ import { JsonplaceholderService } from '../../../shared/jsonplaceholder.service'
 export class PostComponent {
   @Input() post: Post = new Post();
 
+  @Output() public removePost = new EventEmitter<number>();
+
   constructor(private service: JsonplaceholderService) {}
 
   public loadComments(post: Post): void {
@@ -25,5 +27,10 @@ export class PostComponent {
           post.comments = comments;
         });
     }
+  }
+
+  public deletePost(event: Event): void {
+    event?.stopPropagation();
+    this.removePost.emit(this.post.id);
   }
 }
