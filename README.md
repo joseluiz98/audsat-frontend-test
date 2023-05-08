@@ -1,27 +1,35 @@
-# AudsatFrontendTest
+# Teste Frontend Angular Audast 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+Seja bem vindo! Este repositório contém o código-fonte para solução do teste para desenvolvedor Front End da Audsat.
 
-## Development server
+## Primeiros Passos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Primeiramente, vamos nos certificar de instala todas as dependências. Então clone o projeto em alguma pasta de sua preferência e em seguida execute os próximos comandos nessa pasta:
 
-## Code scaffolding
+`npm install` para instalar todas as dependências.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Em seguida, basta executar  `ng serve` para utilizar o dev-server nativo do Angular, que é o suficiente. Navegue então para o `http://localhost:4200/`.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Foi desenvovlidor nesta aplicação:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Telas para visualização de usuários, posts e comentários 
+  - Foi utilizada a API **[JSONPlaceholder](https://jsonplaceholder.typicode.com/)** como exemplo
+- A aplicação foi divida em componentes (como uma boa aplicação Angular deve ser 😍), e em módulos
+- A busca no componente de Filtros (na listagem de usuários) é combinada, ou seja, podem ser utilizados mais de um campo e os resultados respeitarão os valorse de todos os campos utilizados. Além disso, o filtro é **instant search**, ou seja, não é necessário o clique no botão de pesquisa, a própria aplicação pesquisará assim que você terminar os inputs, porém o botão de pesquisa é funcional.
+- A busca por usuários foi implementada utilizando queryParams, ou seja, a aplicação efetua chamadas à API com os parãmetros digitados para buscar a resposta correspondente, porém, implementei também um pipe que faz essa busca pelos usuários que já estão em tela, para ativar, dÊ um ctrl+f por ***FILTER_WITH_PIPE***, e troque o valor dessa variável para `true`
 
-## Further help
+![image-20230508154210388](C:\Users\josel\AppData\Roaming\Typora\typora-user-images\image-20230508154210388.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* O componente de logs foi implemetado! Utilizei IndexedDB para isso
+  * A integração com o IndexedDB foi feita com o auxílio da **[ngx-indexed-db](https://www.npmjs.com/package/ngx-indexed-db)**
+* Foram utilizadas as bibliotecas de componentes: **[Angular Material](https://material.angular.io/)** e **[Bootstrap](https://getbootstrap.com/)**
+
+
+
+
+
+É isto, espero que esteja de acordo/acima das expectativas!
