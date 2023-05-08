@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LogsComponent } from './logs/logs.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -12,6 +14,10 @@ const routes: Routes = [
       import('./administrative/administrative.module').then(
         (m) => m.AdministrativeModule
       ),
+  },
+  {
+    path: 'logs',
+    component: LogsComponent,
   },
   {
     path: '',
