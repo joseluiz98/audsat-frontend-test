@@ -10,4 +10,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  button {
+    background-color: $dartmouth-green !important;
+
+    &:hover {
+      // Mixing black to make buttons 6% darker on hovers
+      background-color: mix(black, $dartmouth-green, 6%) !important;
+    }
+  }
 }
